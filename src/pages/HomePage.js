@@ -1,11 +1,10 @@
-import ListingsList from "../components/ListingsList/ListingsList";
 import StartingPageContent from "../components/StartingPage/StartingPageContent";
+import ListingsPage from "./ListingsPage";
 
 const HomePage = () => {
   return (
     <>
-      <StartingPageContent />
-      <ListingsList />
+      <ListingsPage />
     </>
   );
 };

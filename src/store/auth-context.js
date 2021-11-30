@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 let logoutTimer;
 
@@ -45,6 +46,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = useCallback(() => {
     setToken(null);
+    localStorage.removeItem("userId");
     localStorage.removeItem("token");
 
     if (logoutTimer) {
@@ -57,6 +59,18 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("token", token);
     localStorage.setItem("expirationTime", expirationTime);
 
+    // get user id
+    axios
+      .post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCI6Kybr7phuyB17qM9meL5at3e6BBKlVo",
+        {
+          idToken: token,
+        }
+      )
+      .then((res) => {
+        localStorage.setItem("userId", res.data.users[0].localId);
+        console.log(res.data.users[0].localId);
+      });
     const remainingTime = calculateRemainingTime(expirationTime);
 
     logoutTimer = setTimeout(logoutHandler, remainingTime);
@@ -64,7 +78,7 @@ export const AuthContextProvider = (props) => {
 
   useEffect(() => {
     if (tokenData) {
-      console.log(tokenData.duration);
+      // console.log(tokenData.duration);
       logoutTimer = setTimeout(logoutHandler, tokenData.duration);
     }
   }, [tokenData, logoutHandler]);

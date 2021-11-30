@@ -3,10 +3,12 @@ import classes from "./ProfileForm.module.css";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
 import instance from "../../firebase/instance";
+import ListingsList from "../ListingsList/ListingsList";
 
 const ProfileForm = () => {
   const history = useHistory();
   const newPasswordInputRef = useRef();
+  const userId = localStorage.getItem("userId");
 
   const listingNameRef = useRef();
   const listingPriceRef = useRef();
@@ -49,6 +51,7 @@ const ProfileForm = () => {
       listingPrice: listingPriceRef.current.value,
       listingImage: listingImageRef.current.value,
       listingUrl: listingUrlRef.current.value,
+      listingAuthor: userId,
     };
     console.log("submitting...");
 
@@ -58,7 +61,7 @@ const ProfileForm = () => {
   };
   return (
     <>
-      <form className={classes.form} onSubmit={submitHandler}>
+      {/* <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="new-password">New Password</label>
           <input type="password" id="new-password" ref={newPasswordInputRef} />
@@ -66,7 +69,7 @@ const ProfileForm = () => {
         <div className={classes.action}>
           <button>Change Password</button>
         </div>
-      </form>
+      </form> */}
 
       <form className={classes.form} onSubmit={submitHandler2}>
         <div className={classes.control}>
