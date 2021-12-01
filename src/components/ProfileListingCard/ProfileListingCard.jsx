@@ -48,7 +48,7 @@ const ProfileListingCard = (props) => {
           <Spacer />
           {props.onUserProfile && (
             <Button
-              colorScheme="gray"
+              colorScheme="pink"
               onClick={() => {
                 props.handleDelete(props.listing.id);
               }}

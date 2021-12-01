@@ -57,6 +57,7 @@ const ProfileForm = () => {
 
     instance.post("/listings.json", data).then((res) => {
       console.log(res);
+      alert("Submission successful!");
     });
   };
   return (
