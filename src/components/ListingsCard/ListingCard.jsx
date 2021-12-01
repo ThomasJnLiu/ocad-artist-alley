@@ -43,6 +43,9 @@ const ListingCard = (props) => {
           >
             Vendor Name
           </Heading>
+          <Text fontSize="xl" mt={3}>
+            ${props.listing.listingPrice}
+          </Text>
         </Box>
       </Box>
     </a>
