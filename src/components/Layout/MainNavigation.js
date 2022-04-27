@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import AuthContext from "../../store/auth-context";
 import classes from "./MainNavigation.module.css";
+import { Heading } from "@chakra-ui/react";
 
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
@@ -14,10 +15,13 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
       <Link to="/">
-        <div className={classes.logo}>OCAD Artist Alley</div>
+        <Heading size="md">OCAD Artist Alley</Heading>
       </Link>
       <nav>
         <ul>
+          <li>
+            <Link to="/about-us">About Us</Link>
+          </li>
           {!isLoggedIn && (
             <li>
               <Link to="/auth">Login</Link>

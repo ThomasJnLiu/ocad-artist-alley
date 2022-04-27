@@ -4,6 +4,13 @@ import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
 import instance from "../../firebase/instance";
 import ListingsList from "../ListingsList/ListingsList";
+import {
+  Box,
+  Heading,
+  InputGroup,
+  InputLeftAddon,
+  Tooltip,
+} from "@chakra-ui/react";
 
 const ProfileForm = () => {
   const history = useHistory();
@@ -60,33 +67,41 @@ const ProfileForm = () => {
       alert("Submission successful!");
     });
   };
+
   return (
     <>
-      {/* <form className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor="new-password">New Password</label>
-          <input type="password" id="new-password" ref={newPasswordInputRef} />
-        </div>
-        <div className={classes.action}>
-          <button>Change Password</button>
-        </div>
-      </form> */}
-
-      <form className={classes.form} onSubmit={submitHandler2}>
-        <div className={classes.control}>
-          <label>Listing Name</label>
-          <input type="text" ref={listingNameRef} />
-          <label>Listing Price</label>
-          <input type="text" ref={listingPriceRef} />
-          <label>Listing Image</label>
-          <input type="text" ref={listingImageRef} />
-          <label>Listing url</label>
-          <input type="text" ref={listingUrlRef} />
-        </div>
-        <div className={classes.action}>
-          <button>Submit</button>
-        </div>
-      </form>
+      <Box
+        Maxw="lg"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        padding={50}
+      >
+        <Heading size="2xl" textAlign="left">
+          Submit a{" "}
+          <span style={{ color: "#df1674", textAlign: "left" }}>Listing!</span>
+        </Heading>
+        <form className={classes.form} onSubmit={submitHandler2}>
+          <div className={classes.control}>
+            <label>Listing Name</label>
+            <input type="text" ref={listingNameRef} />
+            <label>Listing Price (CAD)</label>
+            <InputGroup>
+              <InputLeftAddon children="$" />
+              <input type="number" ref={listingPriceRef} />
+            </InputGroup>
+            <label>Listing Url</label>
+            <input type="text" ref={listingUrlRef} />
+            <label>
+              Listing Image Url<Tooltip label="testing">*</Tooltip>
+            </label>
+            <input type="text" ref={listingImageRef} />
+          </div>
+          <div className={classes.action}>
+            <button>Submit</button>
+          </div>
+        </form>
+      </Box>
     </>
   );
 };

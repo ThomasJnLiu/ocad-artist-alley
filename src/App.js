@@ -7,6 +7,7 @@ import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import AuthContext from "./store/auth-context";
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -16,6 +17,9 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <HomePage />
+        </Route>
+        <Route path="/about-us" exact>
+          <AboutUsPage />
         </Route>
         {!authCtx.isLoggedIn && (
           <Route path="/auth">
